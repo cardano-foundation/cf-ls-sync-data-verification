@@ -1,4 +1,4 @@
-import { APIService, HttpMethod } from "@common/api/apiService";
+import { APIService, HttpMethod } from "@common/api/api-service";
 import { Env, Credentials } from "playwright-database-testing/env/env";
 
 export default class APIHelper {
