@@ -14,6 +14,10 @@ export class Koios {
       return `${Koios.BASE_KOIOS_MAIN_NET_URL}/account_addresses`;
     }
   };
-}
 
-//rename class Koios to endpoint class if we are moving with endpoint.koios -> static export
+  static getEpochProtocolParameters = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/epoch_params`;
+    }
+  };
+}

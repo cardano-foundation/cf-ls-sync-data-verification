@@ -11,10 +11,9 @@ export class PostgreSQL {
 
   private tableName: string;
 
-  constructor(databaseName: string, tableName: string) {
+  constructor(databaseName: string) {
     Logger.info("Creating PostgreSQL client");
     this.databaseName = databaseName;
-    this.tableName = tableName;
   }
 
   private async init() {
@@ -112,6 +111,32 @@ export class PostgreSQL {
       });
 
       return addressBalancePojoLSList;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async findLastEpochParam(): Promise<number | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query(
+        "SELECT ep from EpochParam ep WHERE ep.epochNo = (SELECT MAX(e.epochNo) FROM EpochParam e) "
+      );
+      const lastEpochParam: number | null = result.rows[0].max;
+      return lastEpochParam;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async findEpochParamByEpochNo(epochNo: number): Promise<number | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query(
+        `SELECT ep from EpochParam ep WHERE ep.${epochNo} = (SELECT MAX(e.${epochNo}) FROM EpochParam e) `
+      );
+      const epochParam: number | null = result.rows[0].max;
+      return epochParam;
     } finally {
       await this.teardown();
     }

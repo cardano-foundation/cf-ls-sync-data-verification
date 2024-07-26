@@ -7,7 +7,7 @@ import { koiosService } from "@common/service/koios_api_service/koios.service";
 test.describe("@smoke", () => {
   test("Compare the tip of Koios and Ledger Sync", async ({ request }) => {
     test.step("GIVEN: Retrieve chain tip", async () => {
-      const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME, DatabaseConstants.BLOCK_TABLE);
+      const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
       let chainTipLS = await postgres.findBlockHeight();
       let chainTipKoios = await (await koiosService()).getTip();
 

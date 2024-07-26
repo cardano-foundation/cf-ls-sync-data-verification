@@ -11,7 +11,7 @@ test.describe("@smoke", () => {
       const addressArray: string[] = Object.values(StakeAddresses);
 
       await test.step("WHEN: Retrieve address", async () => {
-        const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME, DatabaseConstants.BLOCK_TABLE);
+        const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
         const addressBalanceComparisonMapLS = await postgres.getMapAddressBalanceFromAddress(addressArray);
         const addressBalanceComparisonMapKoios: string[] = await (
           await koiosService()

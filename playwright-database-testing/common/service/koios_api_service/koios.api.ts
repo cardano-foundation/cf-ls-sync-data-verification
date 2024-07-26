@@ -37,8 +37,21 @@ export function koiosApi() {
     return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getAccountAddresses.Base, requestBody);
   };
 
+  const getEpochParameter = async (number: number) => {
+    const request: AxiosRequestConfig = {
+      method: "GET",
+      url: `${Endpoint.Koios.getEpochProtocolParameters.Base}?_epoch_no=${number}`,
+      headers: {
+        accept: "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getEpochProtocolParameters.Base);
+  };
+
   return {
     getTip,
     getAccountAddresses,
+    getEpochParameter,
   };
 }
