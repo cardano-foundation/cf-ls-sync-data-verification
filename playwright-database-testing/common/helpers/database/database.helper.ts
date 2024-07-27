@@ -141,4 +141,48 @@ export class PostgreSQL {
       await this.teardown();
     }
   }
+
+  async findAssetNameFromAddressBalance(): Promise<string | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT asset_name FROM address_balance) ");
+      const assetName: string | null = result.rows[0].max;
+      return assetName;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async findQuantityFromAddressBalance(): Promise<number | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT quantity FROM address_balance) ");
+      const quantity: number | null = result.rows[0].max;
+      return quantity;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async findBlockTimeFromAddressBalance(): Promise<number | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT block_time FROM address_balance) ");
+      const blockTime: number | null = result.rows[0].max;
+      return blockTime;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async findBlockLatestList(): Promise<string | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT MAX(*) FROM Block block");
+      const blockLatestList: string | null = result.rows[0].max;
+      return blockLatestList;
+    } finally {
+      await this.teardown();
+    }
+  }
 }
