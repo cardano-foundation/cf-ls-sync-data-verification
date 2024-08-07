@@ -27,16 +27,16 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@common/*": ["common/*"],
-      "@pages/*": ["pages/*"],
-      "@resources/*": ["resources/*"],
-      "@tests/*": ["tests/*"],
-      "@envConfig/*": ["pages/envConfig/*"],
-      "@helpers/*": ["common/helpers/*"],
-      "@utils/*": ["common/utils/*"],
-      "@fixture/*": ["tests/fixture/*"],
-      "@hooks/*": ["tests/hooks/*"],
-      "@env/*": ["env/*"]
+      "@common/*": ["playwright-database-testing/common/*"],
+      "@pages/*": ["playwright-database-testing/pages/*"],
+      "@resources/*": ["playwright-database-testing/resources/*"],
+      "@tests/*": ["playwright-database-testing/tests/*"],
+      "@envConfig/*": ["playwright-database-testing/pages/envConfig/*"],
+      "@helpers/*": ["playwright-database-testing/common/helpers/*"],
+      "@utils/*": ["playwright-database-testing/common/utils/*"],
+      "@fixture/*": ["playwright-database-testing/tests/fixture/*"],
+      "@hooks/*": ["playwright-database-testing/tests/hooks/*"],
+      "@env/*": ["playwright-database-testing/env/*"]
     },
     "typeRoots": ["./node_modules/@types"]
   }

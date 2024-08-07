@@ -1,6 +1,6 @@
 import { koiosApi } from "./koios.api";
-import { KoiosGetTipInformationDto } from "@common/dtos/koiosGetTipInformation.dto";
-import { KoiosGetAccountAddressesDto } from "@common/dtos/koiosGetAccountAddresses.dto";
+import { KoiosGetTipInformationDto } from "@common/dtos/koios-get-tip-information.dto";
+import { KoiosGetAccountAddressesDto } from "@common/dtos/koios-get-account-addresses.dto";
 
 export async function koiosService() {
   const getTip = async () => {

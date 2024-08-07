@@ -9,7 +9,7 @@
     "test:dev-trace": "ENV=dev npx playwright test --headed --trace on",
     "smoke-test": "npx playwright test --grep '@smoke'",
     "lint": "eslint .",
-    "prepare": "husky",
+    "prepare": "husky && husky install",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write"
@@ -35,7 +35,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^1.24.1",
     "fs-extra": "^11.1.1",
-    "husky": "^9.0.11",
+    "husky": "^8.0.0",
     "lint-staged": "^15.2.2",
     "luxon": "^3.4.3",
     "node-xlsx": "^0.4.0",

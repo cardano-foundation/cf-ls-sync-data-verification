@@ -2,7 +2,7 @@ import { Client, QueryResult } from "pg";
 import DatabaseConstants from "@common/constants/database.constants";
 import { delay } from "@common/helpers/common/common.helper";
 import Logger from "@common/helpers/logger/logger.helper";
-import { Env } from "@env/env";
+import { Env } from "playwright-database-testing/env/env";
 
 export class PostgreSQL {
   private client!: Client;
