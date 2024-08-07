@@ -5,13 +5,13 @@ import { Assertions } from "@common/helpers/misc/assertions.helper";
 import { StakeAddresses } from "@common/constants/project.constants";
 import { koiosService } from "@common/service/koios_api_service/koios.service";
 
-test.describe("@smoke", () => {
+test.describe("@account", () => {
   test("Compare balance of random addresses", async ({}) => {
     await test.step("GIVEN: Get random addresses", async () => {
       const addressArray: string[] = Object.values(StakeAddresses);
 
       await test.step("WHEN: Retrieve address", async () => {
-        const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME, DatabaseConstants.BLOCK_TABLE);
+        const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
         const addressBalanceComparisonMapLS = await postgres.getMapAddressBalanceFromAddress(addressArray);
         const addressBalanceComparisonMapKoios: string[] = await (
           await koiosService()
