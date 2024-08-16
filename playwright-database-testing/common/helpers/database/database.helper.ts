@@ -185,4 +185,70 @@ export class PostgreSQL {
       await this.teardown();
     }
   }
+
+  async findScriptHashInRedeemer(): Promise<string | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT script_hash FROM redeemer");
+      const scriptHash: string | null = result.rows[0].max;
+      return scriptHash;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async getDelegationVote(): Promise<object | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT * FROM delegation_vote");
+      const delegationVote: object | null = result.rows[0].max;
+      return delegationVote;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async getDrepRegistraion(): Promise<string | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT * FROM drep_registration");
+      const drepRegistraion: string | null = result.rows[0].max;
+      return drepRegistraion;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async getGovernanceActionProposal(): Promise<object | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT * FROM gov_action_proposal");
+      const govActionProposal: object | null = result.rows[0].max;
+      return govActionProposal;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async getCommitteeRegistration(): Promise<object | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT * FROM committee_registration");
+      const committeeRegistration: object | null = result.rows[0].max;
+      return committeeRegistration;
+    } finally {
+      await this.teardown();
+    }
+  }
+
+  async getVottingProcedure(): Promise<object | null> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query("SELECT * FROM voting_procedure");
+      const votingProcedure: object | null = result.rows[0].max;
+      return votingProcedure;
+    } finally {
+      await this.teardown();
+    }
+  }
 }

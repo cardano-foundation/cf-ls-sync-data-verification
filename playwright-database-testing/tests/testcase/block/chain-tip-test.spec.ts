@@ -2,7 +2,8 @@ import { test, expect } from "@playwright/test";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
-import { koiosService } from "@common/service/koios_api_service/koios.service";
+import { koiosService } from "@common/service/koios-api-service/koios.service";
+import { TimeOut } from "@common/constants/project.constants";
 
 test.describe("@block", () => {
   test("Compare the tip of Koios and Ledger Sync", async ({ request }) => {
@@ -16,7 +17,7 @@ test.describe("@block", () => {
       });
 
       await test.step("WHEN: Wait for a certain period of time", async () => {
-        await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait for 5 seconds
+        await new Promise((resolve) => setTimeout(resolve, TimeOut.FIVE_SECONDS)); // Wait for 5 seconds
       });
 
       await test.step("WHEN: Retrieve chain tip again", async () => {

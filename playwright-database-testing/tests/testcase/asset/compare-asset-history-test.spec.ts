@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { TxHashes, AssetPolicy, AssetName } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
-import { koiosService } from "@common/service/koios_api_service/koios.service";
+import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
 
