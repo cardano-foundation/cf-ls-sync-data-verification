@@ -81,15 +81,19 @@ export class PostgreSQL {
     }
   }
 
-  async findBlockHeight(): Promise<number | null> {
+  async executeQuery(query: string): Promise<any> {
     try {
       await this.init();
-      const result: QueryResult<any> = await this.client.query("SELECT MAX(block.blockNo) FROM Block block");
-      const blockHeight: number | null = result.rows[0].max;
-      return blockHeight;
+      const result: QueryResult<any> = await this.client.query(query);
+      return result.rows[0].max;
     } finally {
       await this.teardown();
     }
+  }
+
+  async findBlockHeight(): Promise<number | null> {
+    const query = "SELECT MAX(block.blockNo) FROM Block block";
+    return this.executeQuery(query);
   }
 
   async getMapAddressBalanceFromAddress(addresses: string[]): Promise<any[]> {
@@ -117,72 +121,62 @@ export class PostgreSQL {
   }
 
   async findLastEpochParam(): Promise<number | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query(
-        "SELECT ep from EpochParam ep WHERE ep.epochNo = (SELECT MAX(e.epochNo) FROM EpochParam e) "
-      );
-      const lastEpochParam: number | null = result.rows[0].max;
-      return lastEpochParam;
-    } finally {
-      await this.teardown();
-    }
+    const query = "SELECT ep from EpochParam ep WHERE ep.epochNo = (SELECT MAX(e.epochNo) FROM EpochParam e)";
+    return this.executeQuery(query);
   }
 
   async findEpochParamByEpochNo(epochNo: number): Promise<number | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query(
-        `SELECT ep from EpochParam ep WHERE ep.${epochNo} = (SELECT MAX(e.${epochNo}) FROM EpochParam e) `
-      );
-      const epochParam: number | null = result.rows[0].max;
-      return epochParam;
-    } finally {
-      await this.teardown();
-    }
+    const query = `SELECT ep from EpochParam ep WHERE ep.${epochNo} = (SELECT MAX(e.${epochNo}) FROM EpochParam e)`;
+    return this.executeQuery(query);
   }
 
   async findAssetNameFromAddressBalance(): Promise<string | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query("SELECT asset_name FROM address_balance) ");
-      const assetName: string | null = result.rows[0].max;
-      return assetName;
-    } finally {
-      await this.teardown();
-    }
+    const query = "SELECT asset_name FROM address_balance";
+    return this.executeQuery(query);
   }
 
   async findQuantityFromAddressBalance(): Promise<number | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query("SELECT quantity FROM address_balance) ");
-      const quantity: number | null = result.rows[0].max;
-      return quantity;
-    } finally {
-      await this.teardown();
-    }
+    const query = "SELECT quantity FROM address_balance";
+    return this.executeQuery(query);
   }
 
   async findBlockTimeFromAddressBalance(): Promise<number | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query("SELECT block_time FROM address_balance) ");
-      const blockTime: number | null = result.rows[0].max;
-      return blockTime;
-    } finally {
-      await this.teardown();
-    }
+    const query = "SELECT block_time FROM address_balance";
+    return this.executeQuery(query);
   }
 
   async findBlockLatestList(): Promise<string | null> {
-    try {
-      await this.init();
-      const result: QueryResult<any> = await this.client.query("SELECT MAX(*) FROM Block block");
-      const blockLatestList: string | null = result.rows[0].max;
-      return blockLatestList;
-    } finally {
-      await this.teardown();
-    }
+    const query = "SELECT MAX(*) FROM Block block";
+    return this.executeQuery(query);
+  }
+
+  async findScriptHashInRedeemer(): Promise<string | null> {
+    const query = "SELECT script_hash FROM redeemer";
+    return this.executeQuery(query);
+  }
+
+  async getDelegationVote(): Promise<object | null> {
+    const query = "SELECT * FROM delegation_vote";
+    return this.executeQuery(query);
+  }
+
+  async getDrepRegistraion(): Promise<string | null> {
+    const query = "SELECT * FROM drep_registration";
+    return this.executeQuery(query);
+  }
+
+  async getGovernanceActionProposal(): Promise<object | null> {
+    const query = "SELECT * FROM gov_action_proposal";
+    return this.executeQuery(query);
+  }
+
+  async getCommitteeRegistration(): Promise<object | null> {
+    const query = "SELECT * FROM committee_registration";
+    return this.executeQuery(query);
+  }
+
+  async getVottingProcedure(): Promise<object | null> {
+    const query = "SELECT * FROM voting_procedure";
+    return this.executeQuery(query);
   }
 }

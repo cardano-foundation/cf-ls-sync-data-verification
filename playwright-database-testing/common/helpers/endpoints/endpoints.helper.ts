@@ -86,4 +86,10 @@ export class Koios {
       return `${Koios.BASE_KOIOS_MAIN_NET_URL}/pool_registrations`;
     }
   };
+
+  static getScriptRedeemers = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/script_redeemers`;
+    }
+  };
 }
