@@ -5,7 +5,7 @@ import { koiosService } from "@common/service/koios-api-service/koios.service";
 import DatabaseConstants from "@common/constants/database.constants";
 import { PostgreSQL } from "@helpers/database/database.helper";
 
-test.describe("@script", () => {
+test.describe("@regression @smoke @script", () => {
   test("Compare the script redeemer of Koios and Yaci Store", async ({}) => {
     test.step("GIVEN: Retrieve script redeemer information from Koios", async () => {
       let scriptRedeemerKoios = await (await koiosService()).getScriptRedeemers(ScriptHash.SCRIPT_HASH_1);

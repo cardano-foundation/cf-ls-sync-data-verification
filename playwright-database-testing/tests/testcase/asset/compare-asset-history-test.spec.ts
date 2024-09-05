@@ -5,7 +5,7 @@ import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
 
-test.describe("@asset", () => {
+test.describe("@regression @smoke @asset", () => {
   test("Compare the asset history of Koios and Ledger Sync", async ({}) => {
     test.step("GIVEN: Retrieve Koios asset history information", async () => {
       let assetHistoryKoios = await (

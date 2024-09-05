@@ -4,7 +4,7 @@ import DatabaseConstants from "@common/constants/database.constants";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import { TimeOut } from "@common/constants/project.constants";
 
-test.describe("@governance", () => {
+test.describe("@regression @smoke @governance", () => {
   test("Check the logic of process a drep registration", async ({}) => {
     test.step("GIVEN: Retrieve drep registration", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);

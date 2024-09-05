@@ -175,8 +175,23 @@ export class PostgreSQL {
     return this.executeQuery(query);
   }
 
-  async getVottingProcedure(): Promise<object | null> {
+  async getVotingProcedure(): Promise<object | null> {
     const query = "SELECT * FROM voting_procedure";
+    return this.executeQuery(query);
+  }
+
+  async getCommitteeMember(): Promise<object | null> {
+    const query = "SELECT * FROM committee_member";
+    return this.executeQuery(query);
+  }
+
+  async getConstitution(): Promise<object | null> {
+    const query = "SELECT * FROM constitution";
+    return this.executeQuery(query);
+  }
+
+  async getCommittee(): Promise<object | null> {
+    const query = "SELECT * FROM committee";
     return this.executeQuery(query);
   }
 }
