@@ -1,7 +1,7 @@
-import { Client, QueryResult } from "pg";
 import DatabaseConstants from "@common/constants/database.constants";
 import { delay } from "@common/helpers/common/common.helper";
 import Logger from "@common/helpers/logger/logger.helper";
+import { Client, QueryResult } from "pg";
 import { Env } from "playwright-database-testing/env/env";
 
 export class PostgreSQL {
@@ -91,6 +91,17 @@ export class PostgreSQL {
     }
   }
 
+  async getLastRows(query: string): Promise<any> {
+    try {
+      await this.init();
+      const result: QueryResult<any> = await this.client.query(query);
+      const lastRowIndex = result.rows.length - 1;
+      return result.rows[lastRowIndex].max;
+    } finally {
+      await this.teardown();
+    }
+  }
+
   async findBlockHeight(): Promise<number | null> {
     const query = "SELECT MAX(block.blockNo) FROM Block block";
     return this.executeQuery(query);
@@ -125,7 +136,7 @@ export class PostgreSQL {
     return this.executeQuery(query);
   }
 
-  async findEpochParamByEpochNo(epochNo: number): Promise<number | null> {
+  async findEpochParamByEpochNo(epochNo: unknown): Promise<unknown | null> {
     const query = `SELECT ep from EpochParam ep WHERE ep.${epochNo} = (SELECT MAX(e.${epochNo}) FROM EpochParam e)`;
     return this.executeQuery(query);
   }
@@ -193,5 +204,85 @@ export class PostgreSQL {
   async getCommittee(): Promise<object | null> {
     const query = "SELECT * FROM committee";
     return this.executeQuery(query);
+  }
+
+  async getAddressBalance(): Promise<string | null> {
+    const query = "SELECT * FROM address_balance";
+    return this.executeQuery(query);
+  }
+
+  async findBlockList(): Promise<string | null> {
+    const query = "SELECT * FROM block";
+    return this.executeQuery(query);
+  }
+
+  async findLastBlockList(): Promise<string | null> {
+    const query = "SELECT * FROM block";
+    return this.getLastRows(query);
+  }
+
+  async findLastAssetNameFromAddressBalance(): Promise<string | null> {
+    const query = "SELECT asset_name FROM address_balance";
+    return this.getLastRows(query);
+  }
+
+  async findLastQuantityFromAddressBalance(): Promise<number | null> {
+    const query = "SELECT quantity FROM address_balance";
+    return this.getLastRows(query);
+  }
+
+  async findLastBlockTimeFromAddressBalance(): Promise<number | null> {
+    const query = "SELECT block_time FROM address_balance";
+    return this.getLastRows(query);
+  }
+
+  async findLastScriptHashInRedeemer(): Promise<string | null> {
+    const query = "SELECT script_hash FROM redeemer";
+    return this.getLastRows(query);
+  }
+
+  async getLastDelegationVote(): Promise<object | null> {
+    const query = "SELECT * FROM delegation_vote";
+    return this.getLastRows(query);
+  }
+
+  async getLastDrepRegistraion(): Promise<string | null> {
+    const query = "SELECT * FROM drep_registration";
+    return this.getLastRows(query);
+  }
+
+  async getLastGovernanceActionProposal(): Promise<object | null> {
+    const query = "SELECT * FROM gov_action_proposal";
+    return this.getLastRows(query);
+  }
+
+  async getLastCommitteeRegistration(): Promise<object | null> {
+    const query = "SELECT * FROM committee_registration";
+    return this.getLastRows(query);
+  }
+
+  async getLastVotingProcedure(): Promise<object | null> {
+    const query = "SELECT * FROM voting_procedure";
+    return this.getLastRows(query);
+  }
+
+  async getLastCommitteeMember(): Promise<object | null> {
+    const query = "SELECT * FROM committee_member";
+    return this.getLastRows(query);
+  }
+
+  async getLastConstitution(): Promise<object | null> {
+    const query = "SELECT * FROM constitution";
+    return this.getLastRows(query);
+  }
+
+  async getLastCommittee(): Promise<object | null> {
+    const query = "SELECT * FROM committee";
+    return this.getLastRows(query);
+  }
+
+  async getLastAddressBalance(): Promise<string | null> {
+    const query = "SELECT * FROM address_balance";
+    return this.getLastRows(query);
   }
 }

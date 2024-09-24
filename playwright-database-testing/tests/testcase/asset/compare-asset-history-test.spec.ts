@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/test";
-import { TxHashes, AssetPolicy, AssetName } from "@common/constants/project.constants";
+import DatabaseConstants from "@common/constants/database.constants";
+import { AssetName, AssetPolicy } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
-import DatabaseConstants from "@common/constants/database.constants";
+import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @asset", () => {
   test("Compare the asset history of Koios and Ledger Sync", async ({}) => {

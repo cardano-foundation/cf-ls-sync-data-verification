@@ -1,8 +1,8 @@
-import { test, expect } from "@playwright/test";
-import { Assertions } from "@common/helpers/misc/assertions.helper";
 import DatabaseConstants from "@common/constants/database.constants";
-import { PostgreSQL } from "@helpers/database/database.helper";
 import { TimeOut } from "@common/constants/project.constants";
+import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { PostgreSQL } from "@helpers/database/database.helper";
+import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @governance", () => {
   test("Check the logic of process a governance action proposal", async ({}) => {
