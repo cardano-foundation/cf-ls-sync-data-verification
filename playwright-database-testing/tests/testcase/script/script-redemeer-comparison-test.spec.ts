@@ -1,12 +1,12 @@
-import { test, expect } from "@playwright/test";
+import DatabaseConstants from "@common/constants/database.constants";
 import { ScriptHash } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
-import DatabaseConstants from "@common/constants/database.constants";
 import { PostgreSQL } from "@helpers/database/database.helper";
+import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @script", () => {
-  test("Compare the script redeemer of Koios and Yaci Store", async ({}) => {
+  test("Compare the script redeemer of Koios and Ledger Sync", async ({}) => {
     test.step("GIVEN: Retrieve script redeemer information from Koios", async () => {
       let scriptRedeemerKoios = await (await koiosService()).getScriptRedeemers(ScriptHash.SCRIPT_HASH_1);
 

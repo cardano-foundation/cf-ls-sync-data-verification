@@ -1,8 +1,8 @@
-import { test, expect } from "@playwright/test";
+import DatabaseConstants from "@common/constants/database.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
-import DatabaseConstants from "@common/constants/database.constants";
+import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @block", () => {
   test("Compare the latest block in Koios and Ledger Sync", async ({}) => {

@@ -1,5 +1,5 @@
 import { APIService, HttpMethod } from "@common/api/api-service";
-import { Env, Credentials } from "playwright-database-testing/env/env";
+import { Credentials, Env } from "playwright-database-testing/env/env";
 
 export default class APIHelper {
   private cookieAsHeader: Record<string, string> = {};

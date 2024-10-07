@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/test";
-import { Assertions } from "@common/helpers/misc/assertions.helper";
-import { koiosService } from "@common/service/koios-api-service/koios.service";
-import { DataGenerator } from "@common/helpers/misc/data-generator.helper";
-import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
+import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { DataGenerator } from "@common/helpers/misc/data-generator.helper";
+import { koiosService } from "@common/service/koios-api-service/koios.service";
+import { PostgreSQL } from "@helpers/database/database.helper";
+import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @epoch", () => {
   test("Check the logic of epoch parameter", async ({}) => {

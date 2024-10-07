@@ -1,12 +1,12 @@
-import { test, expect } from "@playwright/test";
-import { Assertions } from "@common/helpers/misc/assertions.helper";
 import DatabaseConstants from "@common/constants/database.constants";
-import { PostgreSQL } from "@helpers/database/database.helper";
 import { TimeOut } from "@common/constants/project.constants";
+import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { PostgreSQL } from "@helpers/database/database.helper";
+import { test } from "@playwright/test";
 
 test.describe("@regression @governance", () => {
   test("Check the logic of process a new committee member information", async ({}) => {
-    test.step("GIVEN: Retrieve delegation vote", async () => {
+    test.step("GIVEN: Retrieve commitee member information", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
       let committeeMemberInformation = await postgres.getCommitteeMember();
 
