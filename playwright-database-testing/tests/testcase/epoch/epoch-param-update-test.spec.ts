@@ -5,7 +5,7 @@ import { DataGenerator } from "@common/helpers/misc/data-generator.helper";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
 
-test.describe("@epoch", () => {
+test.describe("@regression @smoke @epoch", () => {
   test("Check the logic of epoch parameter", async ({}) => {
     test.step("GIVEN: Retrieve epoch parameter", async () => {
       const randomNumber = DataGenerator.generateRandomNumber(1, 9);

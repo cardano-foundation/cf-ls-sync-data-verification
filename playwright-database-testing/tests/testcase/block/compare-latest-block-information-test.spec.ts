@@ -4,7 +4,7 @@ import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import DatabaseConstants from "@common/constants/database.constants";
 
-test.describe("@block", () => {
+test.describe("@regression @smoke @block", () => {
   test("Compare the latest block in Koios and Ledger Sync", async ({}) => {
     test.step("GIVEN: Retrieve block list", async () => {
       let blockListKoios = await (await koiosService()).getBlockList();

@@ -5,7 +5,7 @@ import { Assertions } from "@common/helpers/misc/assertions.helper";
 import { StakeAddresses } from "@common/constants/project.constants";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
 
-test.describe("@account", () => {
+test.describe("@regression @smoke @account", () => {
   test("Compare balance of random addresses", async ({}) => {
     await test.step("GIVEN: Get random addresses", async () => {
       const addressArray: string[] = Object.values(StakeAddresses);
