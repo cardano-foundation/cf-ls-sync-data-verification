@@ -1,11 +1,19 @@
 import DatabaseConstants from "@common/constants/database.constants";
 import { StakeAddresses } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { sendSlackNotification } from "@common/helpers/misc/slack-notify.helper";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @account", () => {
+  // This will run after each test
+  test.afterEach(async ({}, testInfo) => {
+    if (testInfo.status === "failed") {
+      await sendSlackNotification(`Test failed: ${testInfo.title}`);
+    }
+  });
+
   test("Compare balance of random addresses", async ({}) => {
     await test.step("GIVEN: Get random addresses", async () => {
       const addressArray: string[] = Object.values(StakeAddresses);
