@@ -14,7 +14,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getTip.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getTip.Base
+    );
   };
 
   const getAccountAddresses = async (accountAddresses: string[]) => {
@@ -34,7 +37,11 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getAccountAddresses.Base, requestBody);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAccountAddresses.Base,
+      requestBody
+    );
   };
 
   const getAccountTransaction = async (stakeAddress: string) => {
@@ -48,7 +55,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getAccountTransaction.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAccountTransaction.Base
+    );
   };
 
   const getBlockList = async () => {
@@ -62,7 +72,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getBlockList.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getBlockList.Base
+    );
   };
 
   const getBlockTransactions = async (blockHashes: string[]) => {
@@ -80,7 +93,11 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getBlockTransaction.Base, requestBody);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getBlockTransaction.Base,
+      requestBody
+    );
   };
 
   const getTransactionInformation = async (txHashes: string[]) => {
@@ -120,7 +137,11 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getTransactionStatus.Base, requestBody);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getTransactionStatus.Base,
+      requestBody
+    );
   };
 
   const getEpochInformation = async (number: number, isInclude: boolean) => {
@@ -132,7 +153,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getEpochInformation.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getEpochInformation.Base
+    );
   };
 
   const getEpochParameter = async (number: number) => {
@@ -144,7 +168,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getEpochProtocolParameters.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getEpochProtocolParameters.Base
+    );
   };
 
   const getEpochBlockProtocols = async (number: number) => {
@@ -156,7 +183,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getEpochBlockProtocols.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getEpochBlockProtocols.Base
+    );
   };
 
   const getAssetUtxos = async (assetList: string[], isExtended: boolean) => {
@@ -175,7 +205,11 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getAssetUtxos.Base, requestBody);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAssetUtxos.Base,
+      requestBody
+    );
   };
 
   const getAssetHistory = async (assetPolicy: string, assetName: string) => {
@@ -187,7 +221,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getAssetHistory.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAssetHistory.Base
+    );
   };
 
   const getPoolRegistration = async (number: unknown) => {
@@ -199,7 +236,10 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getEpochBlockProtocols.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getEpochBlockProtocols.Base
+    );
   };
 
   const getScriptRedeemers = async (script_hash: unknown) => {
@@ -211,7 +251,155 @@ export function koiosApi() {
       },
     };
 
-    return BaseApi.returnLoggedResponse(await axios(request), Endpoint.Koios.getScriptRedeemers.Base);
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getScriptRedeemers.Base
+    );
+  };
+
+  const getAddressInformation = async (address: string) => {
+    const requestBody = {
+      _address: address,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getAddressInformation.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAddressInformation.Base,
+      requestBody
+    );
+  };
+
+  const getAddressUtxo = async (address: string, isExtended: boolean) => {
+    const requestBody = {
+      _address: address,
+      _extended: isExtended,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getAddressUtxo.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAddressUtxo.Base,
+      requestBody
+    );
+  };
+
+  const getUtxosFromPaymentCredentials = async (
+    paymentCredentials: string,
+    isExtended: boolean
+  ) => {
+    const requestBody = {
+      _payment_credentials: paymentCredentials,
+      _extended: isExtended,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getUtxoFromPaymentCredentials.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getUtxoFromPaymentCredentials.Base,
+      requestBody
+    );
+  };
+
+  const getAddressTransactions = async (
+    address: string,
+    afterBlockHeight: number
+  ) => {
+    const requestBody = {
+      _address: address,
+      _after_block_height: afterBlockHeight,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getAddressTransactions.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAddressTransactions.Base,
+      requestBody
+    );
+  };
+
+  const getTransactionsFromPaymentCredentials = async (
+    paymentCredentials: string,
+    afterBlockHeight: number
+  ) => {
+    const requestBody = {
+      _payment_credentials: paymentCredentials,
+      _after_block_height: afterBlockHeight,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getTransactionsFromPaymentCredentials.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getTransactionsFromPaymentCredentials.Base,
+      requestBody
+    );
+  };
+
+  const getAddressAssets = async (address: string) => {
+    const requestBody = {
+      _address: address,
+    };
+
+    const request: AxiosRequestConfig = {
+      method: "POST",
+      url: Endpoint.Koios.getAddressAssets.Base,
+      data: requestBody,
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+      },
+    };
+
+    return BaseApi.returnLoggedResponse(
+      await axios(request),
+      Endpoint.Koios.getAddressAssets.Base,
+      requestBody
+    );
   };
 
   return {
@@ -229,5 +417,11 @@ export function koiosApi() {
     getAssetHistory,
     getPoolRegistration,
     getScriptRedeemers,
+    getAddressInformation,
+    getAddressUtxo,
+    getUtxosFromPaymentCredentials,
+    getAddressTransactions,
+    getTransactionsFromPaymentCredentials,
+    getAddressAssets,
   };
 }

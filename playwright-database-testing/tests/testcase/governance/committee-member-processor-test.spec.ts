@@ -19,11 +19,14 @@ test.describe("@regression @governance", () => {
       let committeeMemberInformation = await postgres.getCommitteeMember();
 
       await test.step("WHEN: Wait for a certain period of time", async () => {
-        await new Promise((resolve) => setTimeout(resolve, TimeOut.FIVE_SECONDS)); // Wait for 5 seconds
+        await new Promise((resolve) =>
+          setTimeout(resolve, TimeOut.FIVE_SECONDS)
+        ); // Wait for 5 seconds
       });
 
       await test.step("AND: committee member information after wait", async () => {
-        let committeeMemberInformationAfterWait = await postgres.getCommitteeMember();
+        let committeeMemberInformationAfterWait =
+          await postgres.getCommitteeMember();
 
         await test.step("THEN: committee member information should be different after wait ", () => {
           Assertions.assertNotEqual(

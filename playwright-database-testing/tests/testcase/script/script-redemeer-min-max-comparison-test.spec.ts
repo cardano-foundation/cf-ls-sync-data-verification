@@ -19,7 +19,11 @@ test.describe("@regression  @script", () => {
       let lastScriptHash = await postgres.findLastScriptHashInRedeemer();
 
       test.step("THEN: Assert map sizes are equal", () => {
-        Assertions.assertNotEqual(firstScriptHash, lastScriptHash, "Map sizes should be equal.");
+        Assertions.assertNotEqual(
+          firstScriptHash,
+          lastScriptHash,
+          "Map sizes should be equal."
+        );
       });
     });
   });

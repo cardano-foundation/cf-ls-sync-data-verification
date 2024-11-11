@@ -19,7 +19,9 @@ test.describe("@regression @governance", () => {
       let consitutionInformation = await postgres.getConstitution();
 
       await test.step("WHEN: Wait for a certain period of time", async () => {
-        await new Promise((resolve) => setTimeout(resolve, TimeOut.FIVE_SECONDS)); // Wait for 5 seconds
+        await new Promise((resolve) =>
+          setTimeout(resolve, TimeOut.FIVE_SECONDS)
+        ); // Wait for 5 seconds
       });
 
       await test.step("AND: Retrieve consitution information after wait", async () => {

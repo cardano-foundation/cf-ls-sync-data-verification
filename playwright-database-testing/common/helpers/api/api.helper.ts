@@ -8,7 +8,9 @@ export default class APIHelper {
     this.cookieAsHeader = cookieAsHeader;
   }
 
-  public async getCookieByLoginWithCredential(credentials: Credentials): Promise<Record<string, string>> {
+  public async getCookieByLoginWithCredential(
+    credentials: Credentials
+  ): Promise<Record<string, string>> {
     const req = new APIService(Env.DB_CONN_STRING);
     const body = {
       username: credentials.username,

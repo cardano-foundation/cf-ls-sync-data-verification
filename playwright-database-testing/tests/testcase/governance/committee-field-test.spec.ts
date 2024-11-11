@@ -18,7 +18,10 @@ test.describe("@regression @governance", () => {
       let committeeInformation = await postgres.getCommittee();
 
       test.step("THEN: committee field should not be null", () => {
-        Assertions.assertNotNull(committeeInformation, "committee should not be null.");
+        Assertions.assertNotNull(
+          committeeInformation,
+          "committee should not be null."
+        );
       });
     });
   });

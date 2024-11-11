@@ -15,7 +15,8 @@ test.describe("@regression @governance", () => {
   test("Verify governance committee registration field", async ({}) => {
     test.step("GIVEN: Retrieve governance committee registration", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
-      let governanceCommitteeRegistration = await postgres.getCommitteeRegistration();
+      let governanceCommitteeRegistration =
+        await postgres.getCommitteeRegistration();
 
       test.step("THEN: governance committee registration field should not be null", () => {
         Assertions.assertNotNull(

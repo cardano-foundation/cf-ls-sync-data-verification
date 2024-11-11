@@ -19,7 +19,11 @@ test.describe("@regression @governance", () => {
       let lastVoteInformation = await postgres.getVotingProcedure();
 
       await test.step("THEN: vote informationl should be different ", () => {
-        Assertions.assertNotEqual(firstVoteInformation, lastVoteInformation, "Vote information should be different.");
+        Assertions.assertNotEqual(
+          firstVoteInformation,
+          lastVoteInformation,
+          "Vote information should be different."
+        );
       });
     });
   });

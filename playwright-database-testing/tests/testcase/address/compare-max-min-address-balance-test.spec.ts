@@ -19,7 +19,11 @@ test.describe("@regression @address", () => {
       let lastAddress = await postgres.getLastAddressBalance();
 
       test.step("THEN: adrress should be different from both query  ", () => {
-        Assertions.assertNotEqual(firstAddress, lastAddress, "adrress should be different from both query.");
+        Assertions.assertNotEqual(
+          firstAddress,
+          lastAddress,
+          "adrress should be different from both query."
+        );
       });
     });
   });

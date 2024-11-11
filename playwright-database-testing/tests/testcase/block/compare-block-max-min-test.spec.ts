@@ -19,7 +19,11 @@ test.describe("@regression @block", () => {
       let lastBlock = await postgres.findLastBlockList();
 
       test.step("THEN: block should be different from both query  ", () => {
-        Assertions.assertEqual(firstBlock, lastBlock, "block should be different from both query.");
+        Assertions.assertEqual(
+          firstBlock,
+          lastBlock,
+          "block should be different from both query."
+        );
       });
     });
   });

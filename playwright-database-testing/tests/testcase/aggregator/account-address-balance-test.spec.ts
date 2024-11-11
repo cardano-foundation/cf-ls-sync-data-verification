@@ -20,19 +20,26 @@ test.describe("@regression @smoke @account", () => {
 
       await test.step("WHEN: Retrieve address", async () => {
         const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
-        const addressBalanceComparisonMapLS = await postgres.getMapAddressBalanceFromAddress(addressArray);
+        const addressBalanceComparisonMapLS =
+          await postgres.getMapAddressBalanceFromAddress(addressArray);
         const addressBalanceComparisonMapKoios: string[] = await (
           await koiosService()
         ).getAccountAddresses(Object.values(StakeAddresses));
 
         await test.step("THEN: Compare balances", () => {
           for (const addressBalanceComparisonKey in addressBalanceComparisonMapLS) {
-            const addressBalanceComparison = addressBalanceComparisonMapLS[addressBalanceComparisonKey];
-            const koiosBalance = addressBalanceComparisonMapKoios[addressBalanceComparisonKey];
+            const addressBalanceComparison =
+              addressBalanceComparisonMapLS[addressBalanceComparisonKey];
+            const koiosBalance =
+              addressBalanceComparisonMapKoios[addressBalanceComparisonKey];
             const s = `comparison address=${addressBalanceComparisonKey.toString()}, ls_balance=${addressBalanceComparison}, koios_balance=${koiosBalance}`;
             console.log(s);
             test.step("THEN: Assert balance equality", () => {
-              Assertions.assertEqual(koiosBalance, addressBalanceComparison, "Balance should be equal.");
+              Assertions.assertEqual(
+                koiosBalance,
+                addressBalanceComparison,
+                "Balance should be equal."
+              );
             });
           }
 
