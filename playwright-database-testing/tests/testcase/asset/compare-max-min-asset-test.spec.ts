@@ -19,7 +19,11 @@ test.describe("@regression @asset", () => {
       let lastAssetName = await postgres.findLastAssetNameFromAddressBalance();
 
       test.step("THEN: asset name should be different from both query  ", () => {
-        Assertions.assertNotEqual(firstAssetName, lastAssetName, "asset name should be different from both query.");
+        Assertions.assertNotEqual(
+          firstAssetName,
+          lastAssetName,
+          "asset name should be different from both query."
+        );
       });
     });
   });

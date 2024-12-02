@@ -15,8 +15,10 @@ test.describe("@regression @governance", () => {
   test("Check the min and max of governance committee registration", async ({}) => {
     test.step("GIVEN: Retrieve governance committee registration", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
-      let firstGovernanceCommitteeRegistration = await postgres.getCommitteeRegistration();
-      let lastGovernanceCommitteeRegistration = await postgres.getLastCommitteeRegistration();
+      let firstGovernanceCommitteeRegistration =
+        await postgres.getCommitteeRegistration();
+      let lastGovernanceCommitteeRegistration =
+        await postgres.getLastCommitteeRegistration();
 
       await test.step("THEN: governance committee registration should be different ", () => {
         Assertions.assertNotEqual(

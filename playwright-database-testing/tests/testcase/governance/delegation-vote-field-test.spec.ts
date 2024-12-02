@@ -18,7 +18,10 @@ test.describe("@regression @governance", () => {
       let delegationVote = await postgres.getDelegationVote();
 
       test.step("THEN: delegation vote field should not be null", () => {
-        Assertions.assertNotNull(delegationVote, "delegation vote should not be null.");
+        Assertions.assertNotNull(
+          delegationVote,
+          "delegation vote should not be null."
+        );
       });
     });
   });

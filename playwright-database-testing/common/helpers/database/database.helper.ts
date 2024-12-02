@@ -28,7 +28,9 @@ export class PostgreSQL {
     Logger.info("Connected to PostgreSQL");
 
     try {
-      await this.client.query(`CREATE DATABASE IF NOT EXISTS ${this.databaseName}`);
+      await this.client.query(
+        `CREATE DATABASE IF NOT EXISTS ${this.databaseName}`
+      );
       await this.client.query(`USE ${this.databaseName}`);
       Logger.info(`Successfully connected to database: ${this.databaseName}`);
     } catch (error) {
@@ -49,7 +51,11 @@ export class PostgreSQL {
     }
   }
 
-  async findWithRetries(query: string, limit: number = 10, retries: number = 3): Promise<any> {
+  async findWithRetries(
+    query: string,
+    limit: number = 10,
+    retries: number = 3
+  ): Promise<any> {
     try {
       return await this.find(query, limit);
     } catch (error: any) {
@@ -69,7 +75,9 @@ export class PostgreSQL {
     Logger.info("Closed PostgreSQL client");
   }
 
-  async findAnnouncementWithSortDescendingByAnnouncedAt(limit: number): Promise<QueryResult<any>> {
+  async findAnnouncementWithSortDescendingByAnnouncedAt(
+    limit: number
+  ): Promise<QueryResult<any>> {
     try {
       await this.init();
       const result: QueryResult<any> = await this.client.query(
@@ -112,7 +120,10 @@ export class PostgreSQL {
       await this.init();
       const inSql = addresses.map(() => "?").join(",");
       const query = `SELECT ab.address, ab.unit, ab.quantity FROM address_balance ab WHERE ab.unit = 'lovelace' AND ab.address IN (${inSql})`;
-      const result: QueryResult<any> = await this.client.query(query, addresses);
+      const result: QueryResult<any> = await this.client.query(
+        query,
+        addresses
+      );
       const addressBalancePojoLSList: any[] = result.rows.map((rs: any) => {
         const address = rs.getString("address");
         const unit = rs.getString("unit");
@@ -132,7 +143,8 @@ export class PostgreSQL {
   }
 
   async findLastEpochParam(): Promise<number | null> {
-    const query = "SELECT ep from EpochParam ep WHERE ep.epochNo = (SELECT MAX(e.epochNo) FROM EpochParam e)";
+    const query =
+      "SELECT ep from EpochParam ep WHERE ep.epochNo = (SELECT MAX(e.epochNo) FROM EpochParam e)";
     return this.executeQuery(query);
   }
 
@@ -284,5 +296,25 @@ export class PostgreSQL {
   async getLastAddressBalance(): Promise<string | null> {
     const query = "SELECT * FROM address_balance";
     return this.getLastRows(query);
+  }
+
+  async getAddressTxAmount(): Promise<string | null> {
+    const query = "SELECT * FROM address_tx_amount";
+    return this.executeQuery(query);
+  }
+
+  async getAddressFromAddressTxAmount(): Promise<string | null> {
+    const query = "SELECT address FROM address_tx_amount";
+    return this.executeQuery(query);
+  }
+
+  async getPaymentCredentialFromAddress(): Promise<string | null> {
+    const query = "SELECT payment_credential FROM address";
+    return this.executeQuery(query);
+  }
+
+  async getBlockNumberFromAddressTxAmount(): Promise<string | null> {
+    const query = "SELECT block FROM address_tx_amount";
+    return this.executeQuery(query);
   }
 }

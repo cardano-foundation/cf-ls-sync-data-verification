@@ -92,4 +92,40 @@ export class Koios {
       return `${Koios.BASE_KOIOS_MAIN_NET_URL}/script_redeemers`;
     }
   };
+
+  static getAddressInformation = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/address_info`;
+    }
+  };
+
+  static getAddressUtxo = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/address_utxos`;
+    }
+  };
+
+  static getUtxoFromPaymentCredentials = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/credential_utxos`;
+    }
+  };
+
+  static getAddressTransactions = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/address_txs`;
+    }
+  };
+
+  static getTransactionsFromPaymentCredentials = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/credential_txs`;
+    }
+  };
+
+  static getAddressAssets = class {
+    public static get Base() {
+      return `${Koios.BASE_KOIOS_MAIN_NET_URL}/address_assets`;
+    }
+  };
 }

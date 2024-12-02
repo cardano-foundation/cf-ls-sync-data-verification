@@ -16,7 +16,8 @@ test.describe("@regression @governance", () => {
     test.step("GIVEN: Retrieve min and max commitee member information", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
       let firstCommitteeMemberInformation = await postgres.getCommitteeMember();
-      let lastCommitteeMemberInformation = await postgres.getLastCommitteeMember();
+      let lastCommitteeMemberInformation =
+        await postgres.getLastCommitteeMember();
 
       await test.step("THEN: committee member information should be different ", () => {
         Assertions.assertNotEqual(

@@ -11,11 +11,16 @@ export interface Credentials {
 }
 
 export class Env {
-  private static createCredentials(usernameKey: string, passwordKey: string): Credentials {
+  private static createCredentials(
+    usernameKey: string,
+    passwordKey: string
+  ): Credentials {
     const username = process.env[usernameKey];
     const password = process.env[passwordKey];
     if (!username || !password) {
-      throw new Error(`Environment variables ${usernameKey} and ${passwordKey} must be set`);
+      throw new Error(
+        `Environment variables ${usernameKey} and ${passwordKey} must be set`
+      );
     }
     return { username, password };
   }
@@ -37,7 +42,10 @@ export class Env {
   }
 
   static get LEDGER_SYNC_CREDENTIAL(): Credentials {
-    return this.createCredentials("LEDGER_SYNC_USERNAME", "LEDGER_SYNC_PASSWORD");
+    return this.createCredentials(
+      "LEDGER_SYNC_USERNAME",
+      "LEDGER_SYNC_PASSWORD"
+    );
   }
 
   static get LEDGER_SYNC_USERNAME(): string {

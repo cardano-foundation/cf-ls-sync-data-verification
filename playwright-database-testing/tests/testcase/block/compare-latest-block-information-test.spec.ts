@@ -20,7 +20,11 @@ test.describe("@regression @smoke @block", () => {
       let blockListLS = await postgres.findBlockLatestList();
 
       await test.step("THEN: Compare block list information", () => {
-        Assertions.assertEqual(blockListKoios, blockListLS, "Block information should be equal.");
+        Assertions.assertEqual(
+          blockListKoios,
+          blockListLS,
+          "Block information should be equal."
+        );
       });
     });
   });

@@ -18,7 +18,10 @@ test.describe("@regression @governance", () => {
       let consitutionInformation = await postgres.getConstitution();
 
       test.step("THEN: consitution field should not be null", () => {
-        Assertions.assertNotNull(consitutionInformation, "consitution should not be null.");
+        Assertions.assertNotNull(
+          consitutionInformation,
+          "consitution should not be null."
+        );
       });
     });
   });

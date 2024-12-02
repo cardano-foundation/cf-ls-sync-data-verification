@@ -18,7 +18,10 @@ test.describe("@regression @governance", () => {
       let drepRegistration = await postgres.getDrepRegistraion();
 
       test.step("THEN: drep registration field should not be null", () => {
-        Assertions.assertNotNull(drepRegistration, "drep registration should not be null.");
+        Assertions.assertNotNull(
+          drepRegistration,
+          "drep registration should not be null."
+        );
       });
     });
   });

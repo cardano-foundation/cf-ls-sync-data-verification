@@ -17,18 +17,29 @@ test.describe("@regression @smoke @epoch", () => {
   test("Check the logic of epoch parameter", async ({}) => {
     test.step("GIVEN: Retrieve epoch parameter", async () => {
       const randomNumber = DataGenerator.generateRandomNumber(1, 9);
-      let epochParameterKoios = await (await koiosService()).getEpochParameter(randomNumber);
+      let epochParameterKoios = await (
+        await koiosService()
+      ).getEpochParameter(randomNumber);
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
-      let epochParameterLS = await postgres.findEpochParamByEpochNo(randomNumber);
+      let epochParameterLS =
+        await postgres.findEpochParamByEpochNo(randomNumber);
 
       await test.step("THEN: Compare epoch parameter information", () => {
-        Assertions.assertEqual(epochParameterKoios, epochParameterLS, "epoch information should be equal.");
+        Assertions.assertEqual(
+          epochParameterKoios,
+          epochParameterLS,
+          "epoch information should be equal."
+        );
       });
 
       await test.step("WHEN: Get latest epoch parameter", async () => {
         let latestEpochParameterLS = await postgres.findLastEpochParam();
         await test.step("THEN: epoch param should be different ", () => {
-          Assertions.assertNotEqual(latestEpochParameterLS, epochParameterLS, "epoch information should be different.");
+          Assertions.assertNotEqual(
+            latestEpochParameterLS,
+            epochParameterLS,
+            "epoch information should be different."
+          );
           Assertions.assertNotEqual(
             latestEpochParameterLS,
             epochParameterKoios,

@@ -21,14 +21,18 @@ test.describe("@regression @smoke @asset", () => {
       ).getAssetHistory(AssetPolicy.ASSET_POLICY_1, AssetName.ASSET_NAME_1);
 
       await test.step("WHEN: Retrieve asset_name from Koios and Ledger Sync", async () => {
-        let assetNameKoiosInformation = assetHistoryKoios.map((assetDto) => assetDto.asset_name);
+        let assetNameKoiosInformation = assetHistoryKoios.map(
+          (assetDto) => assetDto.asset_name
+        );
         let assetNameKoios: string = assetNameKoiosInformation[0];
 
         const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);
         let assetNameLS = await postgres.findAssetNameFromAddressBalance();
 
         await test.step("AND: Retrieve quantity from Koios and Ledger Sync", async () => {
-          let assetQuantityKoiosInformation = assetHistoryKoios.map((assetDto) => assetDto.minting_txs[0].quantity);
+          let assetQuantityKoiosInformation = assetHistoryKoios.map(
+            (assetDto) => assetDto.minting_txs[0].quantity
+          );
           let assetQuantityKoios: string = assetQuantityKoiosInformation[0];
 
           let assetQuantityLS = await postgres.findQuantityFromAddressBalance();
@@ -42,9 +46,21 @@ test.describe("@regression @smoke @asset", () => {
             let assetBlockTimeLS = postgres.findBlockTimeFromAddressBalance();
 
             test.step("THEN: asset_name , quantity, block_time from Koios and Ledger Sync should be similar  ", () => {
-              Assertions.assertEqual(assetNameKoios, assetNameLS, "asset_name should be the same.");
-              Assertions.assertEqual(assetQuantityKoios, assetQuantityLS, "quantity should be the same.");
-              Assertions.assertEqual(assetBlockTimeKoios, assetBlockTimeLS, " block_time should be the same.");
+              Assertions.assertEqual(
+                assetNameKoios,
+                assetNameLS,
+                "asset_name should be the same."
+              );
+              Assertions.assertEqual(
+                assetQuantityKoios,
+                assetQuantityLS,
+                "quantity should be the same."
+              );
+              Assertions.assertEqual(
+                assetBlockTimeKoios,
+                assetBlockTimeLS,
+                " block_time should be the same."
+              );
             });
           });
         });

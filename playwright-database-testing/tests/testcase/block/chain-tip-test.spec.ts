@@ -21,11 +21,17 @@ test.describe("@regression @smoke @block", () => {
       let chainTipKoios = await (await koiosService()).getTip();
 
       await test.step("THEN: Compare chain tip", () => {
-        Assertions.assertEqual(chainTipLS, chainTipKoios, "Chain tips should be equal.");
+        Assertions.assertEqual(
+          chainTipLS,
+          chainTipKoios,
+          "Chain tips should be equal."
+        );
       });
 
       await test.step("WHEN: Wait for a certain period of time", async () => {
-        await new Promise((resolve) => setTimeout(resolve, TimeOut.FIVE_SECONDS)); // Wait for 5 seconds
+        await new Promise((resolve) =>
+          setTimeout(resolve, TimeOut.FIVE_SECONDS)
+        ); // Wait for 5 seconds
       });
 
       await test.step("WHEN: Retrieve chain tip again", async () => {
