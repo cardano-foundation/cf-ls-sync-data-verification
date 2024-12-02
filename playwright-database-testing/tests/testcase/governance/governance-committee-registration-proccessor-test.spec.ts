@@ -1,10 +1,18 @@
 import DatabaseConstants from "@common/constants/database.constants";
 import { TimeOut } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { sendSlackNotification } from "@common/helpers/misc/slack-notify.helper";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @governance", () => {
+  // This will run after each test
+  test.afterEach(async ({}, testInfo) => {
+    if (testInfo.status === "failed") {
+      await sendSlackNotification(`Test failed: ${testInfo.title}`);
+    }
+  });
+
   test("Check the logic of process a governance committee registration", async ({}) => {
     test.step("GIVEN: Retrieve governance committee registration", async () => {
       const postgres = new PostgreSQL(DatabaseConstants.DATABASE_NAME);

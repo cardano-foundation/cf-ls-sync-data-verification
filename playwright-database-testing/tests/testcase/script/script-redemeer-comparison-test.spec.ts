@@ -1,11 +1,19 @@
 import DatabaseConstants from "@common/constants/database.constants";
 import { ScriptHash } from "@common/constants/project.constants";
 import { Assertions } from "@common/helpers/misc/assertions.helper";
+import { sendSlackNotification } from "@common/helpers/misc/slack-notify.helper";
 import { koiosService } from "@common/service/koios-api-service/koios.service";
 import { PostgreSQL } from "@helpers/database/database.helper";
 import { test } from "@playwright/test";
 
 test.describe("@regression @smoke @script", () => {
+  // This will run after each test
+  test.afterEach(async ({}, testInfo) => {
+    if (testInfo.status === "failed") {
+      await sendSlackNotification(`Test failed: ${testInfo.title}`);
+    }
+  });
+
   test("Compare the script redeemer of Koios and Ledger Sync", async ({}) => {
     test.step("GIVEN: Retrieve script redeemer information from Koios", async () => {
       let scriptRedeemerKoios = await (await koiosService()).getScriptRedeemers(ScriptHash.SCRIPT_HASH_1);
