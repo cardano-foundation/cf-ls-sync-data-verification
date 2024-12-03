@@ -19,6 +19,7 @@
     "script-test": "npx playwright test --grep '@script'",
     "governance-test": "npx playwright test --grep '@governance'",
     "address-test": "npx playwright test --grep '@address'",
+    "off-chain-test": "npx playwright test --grep '@off-chain'",
     "test:smoke": "npx playwright test --grep '@smoke'",
     "test:regression": "npx playwright test --grep '@regression'",
     "lint": "eslint .",

@@ -317,4 +317,175 @@ export class PostgreSQL {
     const query = "SELECT block FROM address_tx_amount";
     return this.executeQuery(query);
   }
+
+  async getOffChainDataGovAction(): Promise<string | null> {
+    const query = "SELECT * FROM off_chain_gov_action";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainTxHashGovAction(): Promise<string | null> {
+    const query = "SELECT gov_action_tx_hash FROM off_chain_gov_action";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainContentGovAction(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_gov_action";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainCheckValidGovAction(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_gov_action";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainVotingProcedure(): Promise<string | null> {
+    const query = "SELECT * FROM off_chain_voting_data";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainContentProcedure(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_voting_data";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainCheckValidProcedure(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_voting_data";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainConsitution(): Promise<string | null> {
+    const query = "SELECT * FROM off_chain_constitution";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainConsitutionActiveEpoch(): Promise<string | null> {
+    const query =
+      "SELECT constitution_active_epoch FROM off_chain_constitution";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainConsitutionContent(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_constitution";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainValidConstitution(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_constitution";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainCommitteeDeregistration(): Promise<string | null> {
+    const query = "SELECT * FROM off_chain_committee_deregistration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainTxHashCommitteeDeregistration(): Promise<string | null> {
+    const query =
+      "SELECT committee_dereg_tx_hash FROM off_chain_committee_deregistration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainContentCommitteeDeregistration(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_committee_deregistration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainValidCommitteeDeregistration(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_committee_deregistration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainDrepRegistration(): Promise<string | null> {
+    const query = "SELECT * FROM off_chain_drep_registration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainTxHashDrepRegistration(): Promise<string | null> {
+    const query = "SELECT drep_reg_tx_hash FROM off_chain_drep_registration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainContentDrepRegistration(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_drep_registration";
+    return this.executeQuery(query);
+  }
+
+  async getOffChainValidDrepRegistration(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_drep_registration";
+    return this.executeQuery(query);
+  }
+
+  async getLastOffChainTxHashGovAction(): Promise<string | null> {
+    const query = "SELECT gov_action_tx_hash FROM off_chain_gov_action";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainContentGovAction(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_gov_action";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainCheckValidGovAction(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_gov_action";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainContentProcedure(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_voting_data";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainCheckValidProcedure(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_voting_data";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainConsitutionActiveEpoch(): Promise<string | null> {
+    const query =
+      "SELECT constitution_active_epoch FROM off_chain_constitution";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainConsitutionContent(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_constitution";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainValidConstitution(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_constitution";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainTxHashCommitteeDeregistration(): Promise<string | null> {
+    const query =
+      "SELECT committee_dereg_tx_hash FROM off_chain_committee_deregistration";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainContentCommitteeDeregistration(): Promise<
+    string | null
+  > {
+    const query = "SELECT content FROM off_chain_committee_deregistration";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainValidCommitteeDeregistration(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_committee_deregistration";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainTxHashDrepRegistration(): Promise<string | null> {
+    const query = "SELECT drep_reg_tx_hash FROM off_chain_drep_registration";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainContentDrepRegistration(): Promise<string | null> {
+    const query = "SELECT content FROM off_chain_drep_registration";
+    return this.getLastRows(query);
+  }
+
+  async getLastOffChainValidDrepRegistration(): Promise<string | null> {
+    const query = "SELECT check_valid FROM off_chain_drep_registration";
+    return this.getLastRows(query);
+  }
 }
